@@ -1,0 +1,449 @@
+---
+title: "Module 01 Lab 01"
+author: "HD Sheets"
+date: "2024-10-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Module 01 Lab 01
+
+For each problem below,  create the cells needed and enter your solution
+
+# Problem 1
+
+a.) Use seq to create a vector of values x from 10 to 1, decreasing in steps of 1/2
+
+```{r}
+x <- seq(10, 1, by = -0.5)
+x
+```
+
+
+b.) Find the length of this vector, using an R function
+```{r}
+length_x <- length(x)
+length_x
+```
+
+
+c.) Find the index of the element in x equal to 7.5
+```{r}
+index_7_5 <- which(x == 7.5)
+index_7_5
+```
+
+
+d.) Remove the value 7.5 from the vector x,  so the length decreases by 1
+```{r}
+x <- x[x != 7.5]
+x
+```
+
+
+e.) Sort the vector into both increasing form and decreasing form# Problem 1
+```{r}
+x_increasing <- sort(x)
+x_decreasing <- sort(x, decreasing = TRUE)
+x_increasing
+x_decreasing
+```
+
+
+
+# Problem 2
+
+Read the help manual for the function runif()
+
+a.) Generate a vector z of 10 random uniform values between 1 and 5
+```{r}
+z <- runif(10, min = 1, max = 5)
+z
+```
+
+
+b.) Find the minimum and maximum
+```{r}
+min_z <- min(z)
+max_z <- max(z)
+min_z
+max_z
+```
+
+
+c.) Find the indices of the minimum and maximum
+
+```{r}
+index_min_z <- which(z == min_z)
+index_max_z <- which(z == max_z)
+index_min_z
+index_max_z
+```
+
+
+d.) Compute the vector of the square values in z, store this in a vector called
+     z2
+```{r}
+z2 <- z^2
+z2
+```
+     
+
+e.) Find out if any of the squared vectors are less than 4
+
+```{r}
+any_less_than_4 <- any(z2 < 4)
+any_less_than_4
+
+```
+
+
+f.) Find out of all the squared vectors are less than 22
+```{r}
+all_less_than_22 <- all(z2 < 22)
+all_less_than_22
+```
+
+
+g.) find out how many  of the squared vectors are greater than 15
+      (hint,  try summing the test statement)
+```{r}
+count_greater_than_15 <- sum(z2 > 15)
+count_greater_than_15
+```
+    
+
+# Problem 3
+
+Read the help manual for rnorm to generate random normal values
+
+a.) create a vector of 9 values, all of which are equal to 3
+```{r}
+vector_of_threes <- rep(3, 9)
+vector_of_threes
+```
+
+
+b.) Put this into a 3 by 3 matrix
+```{r}
+matrix_b <- matrix(vector_of_threes, nrow = 3, ncol = 3)
+matrix_b
+```
+
+
+c.) Label the columns as "a", "b","c", and label the rows 1 to 3
+```{r}
+colnames(matrix_b) <- c("a", "b", "c")
+rownames(matrix_b) <- c("1", "2", "3")
+matrix_b
+```
+
+
+d.) create a vector of 12 random normal values
+```{r}
+set.seed(123)
+random_normal_values <- rnorm(12)
+random_normal_values
+```
+
+
+e.) put the random normal values into  4 x 3 matrix
+```{r}
+matrix_e <- matrix(random_normal_values, nrow = 4, ncol = 3)
+matrix_e
+```
+
+
+f.) Create a 3 x 3 identity matrix,  you will need to look up how to do this 
+     in R,   google search "R identity matrix"
+```{r}
+identity_matrix <- diag(3)
+identity_matrix
+```
+
+g.) Multiply the matrix from part b by the identify matrix created in part f
+```{r}
+result_g <- matrix_b %*% identity_matrix
+result_g
+```
+
+
+h.) find the row and column numbers of the largest value in the matrix created in 
+     step e
+```{r}
+max_value_index <- which(matrix_e == max(matrix_e), arr.ind = TRUE)
+max_value_index
+```
+     
+
+i.) What is the average value of the 2nd column of the matrix from step e
+```{r}
+average_second_column <- mean(matrix_e[, 2])
+average_second_column
+```
+
+
+j.) Multiply the matrix from part e by the matrix from part b
+```{r}
+result_j <- matrix_e %*% matrix_b
+result_j
+```
+
+
+# Problem 4
+
+Explain the difference between vectors and lists in R
+
+- Vectors are homogeneous, meaning all elements in a vector must be of the same data type and Lists are heterogeneous, meaning they can contain elements of different types
+
+-how are each created?
+
+Lists are  created using the list() function, vectors are created using the c() function.
+
+-What is different about the two?
+
+Vectors support operations like addition, multiplication, and other mathematical functions and lists do not
+
+-Create a list of the values 1,2,3.  Can you muliple the list by 2? NO
+No
+```{r}
+my_list <- list(1, 2, 3)
+my_list
+
+
+```
+
+
+# Problem 5
+
+a.) Create a list containing the items   "bob",  "sally", c(1,2,3,4), seq(1,5,by=2), c("jah","nah","hah") in it
+```{r}
+my_list <- list("bob", "sally", c(1, 2, 3, 4), seq(1, 5, by = 2), c("jah", "nah", "hah"))
+my_list
+```
+
+
+b.) How would you reference the word "nah"?
+```{r}
+word_nah <- my_list[[5]][2]
+word_nah
+```
+
+
+c.) How would you refernce the y in "sally"
+```{r}
+y_in_sally <- substr(my_list[[2]], 5, 5)
+y_in_sally
+```
+
+
+d.) Extract the vector 1,2,3,4 and store it in a new variable.  Find the mean
+```{r}
+vector_1_to_4 <- my_list[[3]]
+mean_vector_1_to_4 <- mean(vector_1_to_4)
+mean_vector_1_to_4
+```
+
+
+e.) Create a new list from the one in part 1 by removing "bob" and "sally" from the list
+```{r}
+new_list <- my_list[-c(1, 2)]
+new_list
+```
+
+
+# Problem 6
+
+Use ?swiss to look at the built-in data set swiss
+
+a.) What type of data type is this?
+```{r}
+data_type <- class(swiss)
+data_type
+```
+
+
+b.) How many rows and columns does it have (use a function to determine this)
+```{r}
+num_rows <- nrow(swiss)
+num_columns <- ncol(swiss)
+num_rows
+num_columns
+```
+
+
+c.) Use the summary() and str() functions on this object,  explain what they mean
+```{r}
+summary(swiss)
+str(swiss)
+```
+
+
+d.) Print out the column of Agriculture values, but no other columns
+```{r}
+agriculture_column <- swiss$Agriculture
+agriculture_column
+```
+
+
+e.) Which region has the highest education value?
+```{r}
+region_highest_education <- rownames(swiss)[which.max(swiss$Education)]
+region_highest_education
+```
+
+
+f.) Which region has the lowest infant mortality?
+```{r}
+region_lowest_infant_mortality <- rownames(swiss)[which.min(swiss$Infant.Mortality)]
+region_lowest_infant_mortality
+```
+
+
+# Problem 7
+
+a.) Use file.choose() to get the full name and file path of the example file
+sales.csv that is included in the Module 02 content
+
+
+-Do not use file.choose() in the RMD file,  run it in the console.  Including
+file.choose() in an RMD will cause a knit errror
+
+b.)  set infile to the path you found and load the sales.csv file
+
+```{R}
+# this is my path name for the download,  change it to the file name you get
+# using file.choose()
+
+infile="C:\\Users\\freds\\Downloads\\sales (1).csv"
+
+sales_df=read.csv(infile)
+
+
+
+```
+
+c.) Use head(), str() and summary() on this data set.   How many orders are there?
+```{r}
+head(sales_df)
+str(sales_df)
+summary(sales_df)
+```
+```{r}
+num_orders <- nrow(sales_df)
+num_orders
+```
+
+
+d.) Use the unique() function on the Segment column to find out the number of 
+distinct segments there are in the data
+```{r}
+distinct_segments <- length(unique(sales_df$Segment))
+distinct_segments
+```
+
+
+e.) How many different customers are there?
+```{r}
+num_customers <- length(unique(sales_df$Customer.Name))
+num_customers
+```
+
+
+f.) Find the highest profit and the index of the highest profit
+```{r}
+highest_profit <- max(sales_df$Profit)
+index_highest_profit <- which.max(sales_df$Profit)
+highest_profit
+index_highest_profit
+```
+
+
+g.) What was the name of the customer with the highest profit order?
+```{r}
+customer_highest_profit <- sales_df$Customer.Name[index_highest_profit]
+customer_highest_profit
+
+```
+
+h.) Set the Segment variable to be a factor
+```{r}
+sales_df$Segment <- as.factor(sales_df$Segment)
+```
+
+i.) use the lubridate package to set the Order.Data and Ship.Date varialbe to be
+lubridate style date variables
+```{r}
+library(lubridate)
+```
+```{r}
+sales_df$Order.Date <- mdy(sales_df$Order.Date)
+sales_df$Ship.Date <- mdy(sales_df$Ship.Date)
+```
+
+j.) compute the shipping delay from each order, using order date and ship data
+     what were the longest and shortest shipping delays?
+```{r}
+sales_df$Shipping.Delay <- as.numeric(difftime(sales_df$Ship.Date, sales_df$Order.Date, units = "days"))
+longest_delay <- max(sales_df$Shipping.Delay, na.rm = TRUE)
+shortest_delay <- min(sales_df$Shipping.Delay, na.rm = TRUE)
+longest_delay
+shortest_delay
+```
+
+k.) Were orders received on Saturday and Sunday?   Were any shipped on Sunday?
+
+```{r}
+received_on_weekend <- any(weekdays(sales_df$Order.Date) %in% c("Saturday", "Sunday"))
+shipped_on_sunday <- any(weekdays(sales_df$Ship.Date) == "Sunday")
+received_on_weekend
+shipped_on_sunday
+```
+
+
+l.)  Convert the Customer.Name to all lower case
+```{r}
+sales_df$Customer.Name <- tolower(sales_df$Customer.Name)
+
+```
+
+
+m.) Search the customer names and determine how many contain the name John
+```{r}
+num_john <- sum(grepl("\\bjohn\\b", sales_df$Customer.Name, ignore.case = TRUE))
+num_john
+```
+
+n.) How many times is the word "table" in the product names
+         -careful,   str_detect() might find "table" in "portable",   also be
+         careful with case
+```{r}
+num_table <- sum(grepl("\\btable\\b", sales_df$Product.Name, ignore.case = TRUE))
+num_table
+```
+         
+o.) Use tapply to find the mean profit value, grouped by State
+   
+      https://www.statology.org/tapply-r/
+```{r}
+mean_profit_by_state <- tapply(sales_df$Profit, sales_df$State, mean)
+mean_profit_by_state
+```
+    
+   
+p.) use tapply to find the median profit value, grouped by Segment
+```{r}
+median_profit_by_segment <- tapply(sales_df$Profit, sales_df$Segment, median)
+median_profit_by_segment
+```
+
+
+q.) use table to get the number of orders per segment
+```{r}
+orders_per_segment <- table(sales_df$Segment)
+orders_per_segment
+```
+
